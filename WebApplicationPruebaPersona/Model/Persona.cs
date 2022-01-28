@@ -8,11 +8,9 @@
 
         public Persona(int id,string? nombre, int edad)
         {
-            Id = id;
-            Nombre = nombre;
-            Edad = edad;
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Edad = edad;
         }
-
-
     }
 }

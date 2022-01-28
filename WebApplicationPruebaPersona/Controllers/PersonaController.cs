@@ -9,34 +9,44 @@ namespace WebApplicationPruebaPersona.Controllers
     public class PersonaController : ControllerBase
     {
 
-        PersonaRepository repo = new PersonaRepository();
+        private PersonaRepository PersonaRepositorio;
+
+        public PersonaController(PersonaRepository personaRepositorio)
+        {
+            PersonaRepositorio = personaRepositorio;
+        }
 
         [HttpPost]
-        [Route("api/[controller]/create")]
         public void CreatePersona(Persona persona)
         {
-                repo.Add(persona);
+            PersonaRepositorio.Add(persona);
         }
 
         [HttpGet]
         [Route("api/[controller]")]
         public List<Persona> GetPersonas()
         {
-           return repo.GetAll();
+           return PersonaRepositorio.GetAll();
         }
 
         [HttpGet]
-        [Route("api/[controller]/{id}")]
+        [Route("/{id}")]
         public Persona GetPersona(int id)
         {
-            return repo.FindId(id);
+            return PersonaRepositorio.FindId(id);
         }
 
         [HttpDelete]
-        [Route("api/[controller]/delete/{id}")]
+        [Route("/{id}")]
         public void DeletePersona(int id)
         {            
-            repo.Delete(id);
+            PersonaRepositorio.Delete(id);
+        }
+
+        [HttpPut]
+        public void UpdateEdadPersona(int id, int edad)
+        {
+            PersonaRepositorio.UpdateEdad(id, edad);  
         }
 
     }
